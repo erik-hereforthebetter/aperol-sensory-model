@@ -1,0 +1,1582 @@
+:root {
+  --nav: 68px;
+  --ff: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --art-solo: min(80svh, 920px);
+  --art-stack: min(50svh, 540px);
+  --art-pair: min(40svh, 420px);
+  --art-duo: min(42svh, 380px);
+  --wide: 920px;
+  --sgap: clamp(72px, 10vh, 132px);
+  --pad: clamp(28px, 5vw, 88px);
+  --bg: #e3cba8;
+  --ink: #12100e;
+  --mut: #6f5637;
+  --dim: #8a6742;
+  --rule: #cdb08a;
+  --hi: #fe5000;
+  --up: #00a855;
+  --dn: #b4531f;
+  --panel: #efdcc0;
+}
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  font: 16px/1.55 var(--ff);
+  -webkit-font-smoothing: antialiased;
+}
+#nav,
+#nav *,
+#sheet,
+#sheet *,
+#tip,
+#tip *,
+section,
+section * {
+  font-family: var(--ff);
+  box-sizing: border-box;
+}
+#nav,
+#sheet .sheetin,
+section {
+  background: var(--bg);
+  color: var(--ink);
+}
+section {
+  position: relative;
+  padding-top: calc(var(--sgap) / 2);
+  padding-bottom: calc(var(--sgap) / 2);
+}
+#s1 {
+  padding-top: 0;
+}
+#sheet h4,
+#sheet p,
+section h2,
+section h3,
+section li,
+section p,
+section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#sheet button,
+section button {
+  font-family: var(--ff);
+  letter-spacing: normal;
+  text-transform: none;
+}
+.in {
+  width: 100%;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0;
+}
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  padding: 0 var(--pad);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(9px);
+  border-bottom: 1px solid var(--rule);
+}
+.navin {
+  width: 100%;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0;
+  height: var(--nav);
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+#nav .brand {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+#nav .brand svg {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+#nav a {
+  font-size: 13px;
+  color: var(--mut);
+  text-decoration: none;
+  padding: 4px 0;
+  position: relative;
+  white-space: nowrap;
+}
+#nav a:hover {
+  color: var(--ink);
+}
+#nav a.on {
+  color: var(--ink);
+  font-weight: 600;
+}
+#nav a.on:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--hi);
+}
+@media (max-width: 760px) {
+  .navin {
+    gap: 16px;
+    overflow-x: auto;
+  }
+  #nav .brand svg {
+    height: 30px;
+  }
+  #nav a {
+    font-size: 12px;
+  }
+}
+.lede {
+  padding: 92px 0 30px;
+}
+.lede .tag {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+.lede h1 {
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.06;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.lede p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--mut);
+  font-size: 19px;
+  line-height: 1.6;
+}
+h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.sub {
+  color: var(--dim);
+  font-size: 17px;
+  margin: 0 0 32px;
+  max-width: 62ch;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 9px;
+}
+.stage {
+  display: grid;
+  grid-template-columns: 400px 440px;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0;
+}
+.stage .art {
+  min-width: 0;
+}
+.stage .say {
+  min-width: 0;
+  position: relative;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s;
+}
+.track {
+  position: relative;
+}
+html.framed .pin {
+  height: calc(var(--vph, 100vh) - var(--nav)) !important;
+}
+html.framed #nav {
+  position: absolute;
+  top: 0;
+}
+html.framed {
+  --art-solo: min(calc(var(--vph) * 0.8), 920px);
+  --art-stack: min(calc(var(--vph) * 0.5), 540px);
+  --art-pair: min(calc(var(--vph) * 0.4), 420px);
+  --art-duo: min(calc(var(--vph) * 0.42), 380px);
+}
+.pin {
+  position: sticky;
+  top: var(--nav);
+  height: calc(100vh - var(--nav));
+  height: calc(100svh - var(--nav));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--pad);
+}
+.pin > .stage {
+  flex: 1 1 auto;
+}
+.snap {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+#s1 .track {
+  height: 640vh;
+}
+#s1 .art {
+  transition: none;
+  height: var(--art-solo);
+  position: relative;
+  will-change: transform, width;
+}
+.senseover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.senseover i {
+  width: auto;
+  aspect-ratio: 1;
+  flex: none;
+  display: block;
+  opacity: 0;
+  transform: translateY(14px) scale(0.86);
+}
+.senseover i svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+#s1 .art svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.step {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.45s,
+    transform 0.45s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  max-width: 440px;
+  transform-origin: center;
+}
+.step.on {
+  opacity: 1;
+  transform: none;
+}
+.step h3 {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.step p {
+  font-size: 23px;
+  line-height: 1.45;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.legend {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 16px;
+}
+.legend i {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  transition: background 0.3s;
+}
+.legend em {
+  margin-left: auto;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--mut);
+}
+#s2 .track {
+  height: 300vh;
+}
+#s2 .col {
+  width: 100%;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: clamp(26px, 4vh, 56px) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(26px, 4vh, 56px);
+}
+#s2 .below {
+  position: relative;
+  min-height: 190px;
+}
+#s2 .panelA,
+#s2 .panelB {
+  transition: opacity 0.4s;
+}
+#s2 .panelA {
+  position: absolute;
+  inset: 0;
+}
+#s2 .panelB {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+#s2 .panelB.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+#s2 .panelA.off {
+  opacity: 0;
+  pointer-events: none;
+}
+#s2 .chartrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+#s2 .chartbox {
+  flex: 0 0 auto;
+  width: var(--art-stack);
+  transition:
+    width 0.55s,
+    transform 0.55s;
+}
+#s2 .changes {
+  flex: 0 0 0;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    width 0.55s,
+    opacity 0.35s,
+    flex-basis 0.55s;
+}
+#s2.touched .chartrow {
+  justify-content: flex-start;
+}
+#s2.touched .chartbox {
+  width: var(--art-pair);
+}
+#s2.touched .changes {
+  flex: 0 0 auto;
+  width: min(380px, 34%);
+  opacity: 1;
+}
+.drinkline {
+  font-size: 19px;
+  line-height: 1.55;
+  margin: 0 0 24px;
+  max-width: 92ch;
+  letter-spacing: -0.006em;
+  display: none;
+}
+#s2.live .drinkline {
+  display: block;
+}
+.drinkline .cl {
+  transition: background 0.5s;
+  padding: 1px 0;
+}
+.drinkline .cl.hit {
+  background: #ffd98a;
+  box-shadow: 0 0 0 3px #ffd98a;
+}
+.axrow[title] {
+  cursor: pointer;
+}
+.dialgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px 42px;
+}
+.dialfoot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.dialfoot .reset {
+  margin: 0;
+}
+.chrow {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 62px 34px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+}
+.chrow .ico {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: block;
+}
+.chrow .ico svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  stroke: var(--ink);
+}
+.chrow b {
+  font-size: 17px;
+}
+.chrow .arrows {
+  justify-content: flex-start;
+  display: flex;
+  gap: 2px;
+}
+.chrow .arrows svg {
+  width: 14px;
+  height: 19px;
+  display: block;
+}
+.chrow em {
+  font-style: normal;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: 18px;
+  text-align: right;
+}
+#s2 .chartbox > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.axrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+  opacity: 0.22;
+  transition: opacity 0.4s;
+}
+.axrow.on {
+  opacity: 1;
+}
+.axrow b {
+  font-size: 15px;
+  min-width: 64px;
+  flex: none;
+}
+.axrow span {
+  font-size: 13px;
+  color: var(--mut);
+  flex: 1;
+  line-height: 1.35;
+}
+.axrow em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 19px;
+  min-width: 30px;
+  text-align: right;
+  flex: none;
+}
+.axrow .arrows {
+  display: none;
+}
+#s3 {
+  padding: 70px 0 90px;
+}
+.dial {
+  margin-bottom: 6px;
+}
+.dial .top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.dial .vl {
+  color: var(--mut);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.dial input {
+  width: 100%;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: 0 0;
+  height: 22px;
+  cursor: pointer;
+}
+.dial input::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(#12100e14, #12100e14), var(--bg);
+  border: 1px solid var(--rule);
+}
+.dial input::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(#12100e14, #12100e14), var(--bg);
+  border: 1px solid var(--rule);
+}
+.dial input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--hi);
+  border: 2px solid var(--bg);
+  margin-top: -8px;
+  box-shadow: 0 0 0 1px #00000022;
+}
+.dial input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--hi);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px #00000022;
+}
+.dial input:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.hint {
+  font-size: 12px;
+  color: var(--dim);
+  margin-top: 18px;
+  line-height: 1.5;
+}
+.reset {
+  margin-top: 14px;
+  padding: 7px 14px;
+  border: 1px solid var(--rule);
+  background: 0 0;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.reset:hover {
+  background: var(--panel);
+}
+[data-tip] {
+  cursor: pointer;
+}
+.hint [data-tip] {
+  border-bottom: 1px dotted var(--dim);
+}
+#tip {
+  position: fixed;
+  z-index: 60;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: var(--bg);
+  border: 1px solid var(--ink);
+  padding: 15px 17px 16px;
+  box-shadow: 0 14px 34px rgba(40, 26, 10, 0.18);
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 0.16s,
+    transform 0.16s;
+  pointer-events: none;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+#tip.on {
+  opacity: 1;
+  transform: none;
+}
+#tip .lab {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+#tip .arw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--bg);
+  border-left: 1px solid var(--ink);
+  border-top: 1px solid var(--ink);
+  transform: rotate(45deg);
+}
+#tip.below .arw {
+  top: -5px;
+}
+#tip.above .arw {
+  bottom: -5px;
+  transform: rotate(225deg);
+}
+.dial .nm {
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 1px dotted transparent;
+  transition: border-color 0.15s;
+}
+.dial:hover .nm {
+  border-bottom-color: var(--dim);
+}
+.chrow:hover,
+.glab:hover,
+.trow:hover {
+  background: rgba(18, 16, 14, 0.035);
+}
+@media (hover: none) {
+  #tip {
+    display: none;
+  }
+}
+#sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(28, 20, 10, 0.42);
+  display: flex;
+  justify-content: flex-end;
+  animation: 0.2s fade;
+}
+#sheet[hidden] {
+  display: none;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sheetin {
+  width: min(720px, 100%);
+  height: 100%;
+  background: var(--bg);
+  border-left: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  animation: 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) slidein;
+}
+@keyframes slidein {
+  from {
+    transform: translateX(28px);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.sheethead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px var(--pad) 18px;
+  border-bottom: 1px solid var(--rule);
+  flex: none;
+}
+.sheetx {
+  border: 1px solid var(--rule);
+  background: 0 0;
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 14px;
+  cursor: pointer;
+  color: var(--ink);
+  flex: none;
+}
+.sheetx:hover {
+  background: var(--hi);
+  border-color: var(--hi);
+  color: #fff;
+}
+.sheetbody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px var(--pad) 10px;
+}
+.sheetfoot {
+  flex: none;
+  padding: 16px var(--pad) 22px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.sblk {
+  margin-bottom: 30px;
+}
+.sblk h4 {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.sblk p {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.srow {
+  display: grid;
+  grid-template-columns: 1fr 62px 62px 74px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+.srow.hd {
+  border-bottom: 1px solid var(--ink);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding-bottom: 7px;
+}
+.srow b {
+  font-weight: 600;
+}
+.srow i {
+  font-style: normal;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--mut);
+}
+.srow u {
+  text-decoration: none;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.srow em {
+  font-style: normal;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+}
+.srow em.up {
+  color: var(--up);
+}
+.srow em.dn {
+  color: var(--dn);
+}
+.walled {
+  border-left: 2px solid var(--hi);
+  padding: 2px 0 2px 13px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--mut);
+  margin: 0 0 10px;
+}
+.walled b {
+  color: var(--ink);
+}
+.lever {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+.lever b {
+  flex: 1;
+  font-weight: 600;
+}
+.lever span {
+  color: var(--mut);
+  font-size: 13px;
+}
+.who {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid var(--rule);
+  padding: 2px 7px;
+  align-self: center;
+  flex: none;
+}
+.tbar {
+  position: relative;
+  flex: 1;
+  height: 16px;
+}
+.tbar i:not([style*="width"]) {
+  position: absolute;
+  top: -9px;
+  bottom: -9px;
+  width: 1px;
+  height: auto;
+  background: var(--rule);
+  opacity: 0.75;
+  transform: none;
+  transition: none;
+}
+.tbar i[style*="width"] {
+  position: absolute;
+  top: 4px;
+  height: 8px;
+  background: var(--hi);
+  opacity: 0.9;
+  display: block;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.trow.on .tbar i[style*="width"] {
+  transform: scaleX(1);
+}
+.tbar u {
+  position: absolute;
+  top: 1px;
+  width: 2px;
+  height: 14px;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 0.4s 0.4s;
+}
+.trow.on .tbar u {
+  opacity: 0.6;
+}
+.gcell .arrows svg {
+  width: 13px;
+  height: 17px;
+  display: block;
+}
+.gcell.lead {
+  color: var(--ink);
+}
+.gcell.trail {
+  color: var(--mut);
+  font-weight: 500;
+}
+.sw {
+  padding: 8px 15px;
+  border: 1px solid var(--rule);
+  background: 0 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--mut);
+  cursor: pointer;
+}
+.sw.on {
+  background: var(--hi);
+  border-color: var(--hi);
+  color: #fff;
+}
+.sw:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+#s4 {
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+.axis {
+  position: relative;
+  height: 24px;
+  margin: 20px 0 2px 200px;
+  padding-right: 102px;
+}
+.axis .in2 {
+  position: relative;
+  height: 100%;
+  border-bottom: 1px solid var(--rule);
+}
+.axis span {
+  position: absolute;
+  top: 5px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.axis .unit {
+  position: absolute;
+  left: 0;
+  top: -19px;
+  transform: none;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+.trow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+}
+.trow.on {
+  opacity: 1;
+  transform: none;
+}
+.trow b {
+  width: 186px;
+  flex: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+.trow em {
+  width: 88px;
+  flex: none;
+  text-align: right;
+  font-style: normal;
+  font-size: 12px;
+  color: var(--mut);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.cav {
+  margin-top: 26px;
+  border-left: 2px solid var(--rule);
+  padding: 2px 0 2px 14px;
+  font-size: 13px;
+  color: var(--mut);
+  max-width: 72ch;
+}
+#s5 {
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vsgrid {
+  display: grid;
+  grid-template-columns: 170px 1fr 1fr;
+  gap: 0 40px;
+  align-items: end;
+}
+.vsgrid .glass {
+  height: var(--art-duo);
+  min-width: 0;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.vsgrid .glass svg {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.dname {
+  margin: 16px 0 20px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+.colhead {
+  align-self: end;
+}
+.glab {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+  color: var(--mut);
+}
+.gcell {
+  align-self: stretch;
+  min-height: 56px;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 56px auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.gcell .arrows {
+  display: flex;
+  gap: 2px;
+}
+.gcell,
+.glab,
+.trow {
+  cursor: pointer;
+}
+.gcell:hover,
+.glab:hover,
+.trow:hover {
+  background: rgba(18, 16, 14, 0.035);
+}
+@media (max-width: 900px) {
+  html.framed #s1 .stage {
+    grid-template-rows: calc(var(--vph) * 0.56) calc(var(--vph) * 0.4) !important;
+  }
+  html.framed #s1 .art {
+    height: auto !important;
+  }
+  html.framed .vsgrid .glass {
+    height: min(calc(var(--vph) * 0.27), 230px);
+  }
+  :root {
+    --pad: 20px;
+  }
+  #nav .brand svg {
+    height: 28px;
+  }
+  .navin {
+    gap: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #nav a {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  #s1 .pin {
+    padding: 0;
+  }
+  #s1 .stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) 40svh;
+    gap: 0;
+    height: 100%;
+    max-width: none;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  #s1 .art {
+    height: auto;
+    min-height: 0;
+    width: 100% !important;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 14px var(--pad) 0;
+  }
+  #s1 .art > svg {
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+  }
+  #s1 .say {
+    position: relative;
+    min-height: 0;
+    display: block;
+    padding: 0;
+  }
+  .step {
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    top: 18px;
+    bottom: auto;
+    translate: none;
+    width: auto;
+    max-width: none;
+  }
+  .step p {
+    font-size: 19px;
+    line-height: 1.42;
+    letter-spacing: -0.01em;
+  }
+  .step h3 {
+    font-size: 11px;
+    margin-bottom: 9px;
+  }
+  .legend li {
+    padding: 8px 0;
+    font-size: 15px;
+  }
+  #s2 .col {
+    padding: 14px 0;
+    gap: 10px;
+    max-height: none;
+  }
+  #s2 .chartrow {
+    flex-direction: column;
+    gap: 12px;
+  }
+  #s2 .chartbox {
+    width: min(56vw, 220px) !important;
+  }
+  #s2.touched .chartbox {
+    width: min(40vw, 150px) !important;
+  }
+  #s2.touched .changes {
+    width: 100% !important;
+    flex: 0 0 auto;
+  }
+  .chrow {
+    grid-template-columns: 26px minmax(0, 1fr) 54px 32px;
+    gap: 8px;
+    padding: 7px 0;
+  }
+  .chrow .ico,
+  .chrow .ico svg {
+    width: 26px;
+    height: 26px;
+  }
+  .chrow b {
+    font-size: 15px;
+  }
+  .drinkline {
+    font-size: 13.5px;
+    line-height: 1.38;
+    margin: 0 0 10px;
+    max-height: none;
+  }
+  .axrow {
+    padding: 6px 0;
+  }
+  .axrow b {
+    font-size: 14px;
+    min-width: 58px;
+  }
+  .axrow span {
+    display: none;
+  }
+  .axrow em {
+    font-size: 16px;
+  }
+  .dialgrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 18px;
+  }
+  .dial .top {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .dial {
+    margin-bottom: 2px;
+  }
+  .dial .vl {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .dialfoot {
+    margin-top: 8px;
+  }
+  .dialfoot .hint {
+    display: none;
+  }
+  .axis {
+    margin: 16px 0 4px;
+    padding: 0;
+  }
+  #s2 .pin {
+    padding: 0 var(--pad);
+  }
+  .axis .unit {
+    top: -17px;
+  }
+  .trow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 10px;
+    padding: 10px 0;
+  }
+  .trow b {
+    width: auto;
+    font-size: 14px;
+  }
+  .trow em {
+    width: auto;
+    text-align: right;
+    font-size: 11px;
+  }
+  .tbar {
+    grid-column: 1/-1;
+    height: 14px;
+  }
+  .vsgrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+  }
+  .colhead,
+  .vsgrid > div:first-child {
+    display: none;
+  }
+  .glab {
+    grid-column: 1/-1;
+    padding: 14px 0 2px;
+    min-height: 0;
+    border-top: 1px solid var(--rule);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .gcell {
+    border-top: 0;
+    padding: 2px 0 10px;
+    min-height: 0;
+    font-size: 17px;
+    grid-template-columns: 46px auto;
+  }
+  .vsgrid .glass {
+    height: min(27svh, 230px);
+    justify-content: center;
+  }
+  .vsgrid .glass svg {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+  }
+  .dname {
+    margin: 8px 0 10px;
+    font-size: 10px;
+  }
+  .swap {
+    margin-bottom: 18px;
+  }
+  .swnote {
+    display: none;
+  }
+  .sheetin {
+    width: 100%;
+    border-left: 0;
+  }
+  .srow {
+    grid-template-columns: 1fr 50px 50px 56px;
+    font-size: 13px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  .sub {
+    font-size: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    height: auto !important;
+  }
+  .pin {
+    position: relative;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   SCROLL BEHAVIOUR, REVEALS, AND CONTROL MODES
+   Appended in the de-parallax pass. Rules here intentionally override the
+   older pinning styles above rather than deleting them, so the pinned #s1
+   desktop path and the flat path share one stylesheet.
+   ========================================================================== */
+
+/* The old build set scroll-behavior:smooth globally, which meant every
+   programmatic scroll animated and could be interrupted mid-flight. Anchor
+   links still want it; the document does not. */
+body,
+html {
+  scroll-behavior: auto;
+}
+html {
+  scroll-padding-top: calc(var(--nav) + 12px);
+}
+
+/* -- Reveal on enter ------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* -- #s2 is no longer pinned --------------------------------------------- */
+#s2 .s2head {
+  padding: 0 var(--pad);
+  margin: 0 auto clamp(26px, 4vh, 44px);
+}
+#s2 .s2body {
+  padding: 0 var(--pad);
+}
+#s2 .col {
+  max-height: none;
+  padding: 0;
+  gap: clamp(24px, 3.5vh, 44px);
+}
+#s2 .below {
+  position: static;
+  min-height: 0;
+}
+#s2 .panelB {
+  position: static;
+  inset: auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+#s2 .chartbox {
+  /* The chart no longer shrinks to make room for a second column on first
+     paint; it holds one size and the change list appears beside it. */
+  width: min(360px, 42vw);
+}
+#s2.touched .chartbox {
+  width: min(300px, 34vw);
+}
+
+/* -- Basic / Advanced ------------------------------------------------------ */
+
+.modebtn + 
+
+
+
+
+/* Basic mode: three dials, no prose. */
+
+
+
+
+.dialaffects-l {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.dialaffects i {
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--rule);
+  padding: 2px 8px;
+  color: var(--mut);
+}
+
+.dialfoot {
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   NO PARALLAX PATH
+   Applies on mobile, on coarse pointers, and under reduced motion. #s1 stops
+   being a pinned track and becomes an ordinary stacked section.
+   ========================================================================== */
+html.no-parallax .track {
+  height: auto !important;
+}
+html.no-parallax .pin {
+  position: static;
+  height: auto;
+  display: block;
+  padding: 0 var(--pad);
+}
+html.no-parallax #s1 .stage {
+  display: block;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
+}
+html.no-parallax #s1 .art {
+  height: auto;
+  width: 100% !important;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0;
+  transform: none !important;
+  display: block;
+}
+html.no-parallax #s1 .art > svg {
+  width: 100%;
+  height: auto;
+  max-height: 62svh;
+}
+html.no-parallax #s1 .say {
+  position: static;
+  min-height: 0;
+  display: block;
+  padding: 0;
+}
+/* Steps stop stacking on top of each other and read as a sequence. */
+html.no-parallax #s1 .step {
+  position: static;
+  transform: none;
+  translate: none;
+  left: auto;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  width: auto;
+  max-width: 46ch;
+  margin: 0 auto;
+  padding: clamp(26px, 4vh, 40px) 0 0;
+}
+/* .step.on is the pinned path's visibility switch; on this path every step is
+   present and the reveal class handles its entrance. */
+html.no-parallax #s1 .step:not(.reveal) {
+  opacity: 1;
+}
+html.no-parallax #s1 .senseover {
+  display: none;
+}
+html.no-parallax #s2 .chartrow {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+}
+html.no-parallax #s2 .chartbox,
+html.no-parallax #s2.touched .chartbox {
+  width: min(300px, 74vw);
+  margin: 0 auto;
+}
+html.no-parallax #s2 .changes,
+html.no-parallax #s2.touched .changes {
+  width: 100% !important;
+  flex: 0 0 auto;
+  opacity: 1;
+}
+html.no-parallax #s5 {
+  display: block;
+  padding-top: var(--sgap);
+}
+
+@media (max-width: 900px) {
+  #s2 .s2head,
+  #s2 .s2body {
+    padding: 0 var(--pad);
+  }
+  #s2 .chartbox,
+  #s2.touched .chartbox {
+    width: min(280px, 70vw) !important;
+    margin: 0 auto;
+  }
+
+  /* One dial per row on small screens: two 150px columns put the label, the
+     readout and the thumb all in the same 150px. */
+  #s2 .dialgrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sliders need a real thumb target on touch. */
+  .dial input {
+    height: 34px;
+  }
+  .dial input::-webkit-slider-thumb {
+    width: 26px;
+    height: 26px;
+    margin-top: -11px;
+  }
+  .dial input::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+  }
+  .reset,
+  .sheetx,
+  .sw {
+    min-height: 44px;
+  }
+}
+
+/* -- Pinning is ScrollTrigger's job on the parallax path -------------------
+   .pin still carries `position:sticky; top:var(--nav)` for the no-JS case.
+   Leaving that in place while ScrollTrigger also pins stacks the two offsets
+   and parks the block a full nav-height too low. */
+html.has-parallax .pin {
+  position: relative;
+  top: auto;
+}
+
+/* -- Touch targets --------------------------------------------------------- */
+@media (max-width: 900px) {
+  #nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+  }
+  .dial input {
+    height: 44px;
+  }
+  .dial input::-webkit-slider-thumb {
+    margin-top: -10px;
+  }
+}

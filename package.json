@@ -1,0 +1,17 @@
+{
+  "name": "aperol-sensory-model",
+  "private": true,
+  "version": "1.2.0",
+  "description": "Aperol Spritz sensory model — a static site about what the drink actually does.",
+  "scripts": {
+    "build": "mkdir -p public && html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true src/index.html -o public/index.html && cleancss -O2 src/a.css -o public/a.css && cleancss -O2 src/f.css -o public/f.css && terser src/a.js -c -m --comments false -o public/a.js && terser src/b.js -c -m --comments false -o public/b.js && cp src/gsap.min.js src/ScrollTrigger.min.js public/",
+    "serve": "npm run build && python3 -m http.server 8080 --directory public",
+    "verify": "node verify.mjs"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "html-minifier-terser": "^7.2.0",
+    "terser": "^5.36.0",
+    "playwright": "^1.62.1"
+  }
+}
