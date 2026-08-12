@@ -994,10 +994,16 @@ section {
 #s2 .dial:nth-child(3) {
   padding-top: 0;
 }
-/* Ten dials in three columns: 4 / 3 / 3. Only the true last row of each
-   column loses its rule. */
-#s2 .dial:nth-child(n + 8) {
+/* Separate the dials with a top rule on everything except the first row, not a
+   bottom rule on everything except the last. Which items sit in the last row
+   depends on how many dials there are; which sit in the FIRST row never does —
+   so this stays correct whatever the count. */
+#s2 .dial {
   border-bottom: 0;
+  border-top: 1px solid var(--rule);
+}
+#s2 .dial:nth-child(-n + 3) {
+  border-top: 0;
 }
 #s2 .dialfoot {
   margin-top: var(--sp-6);
@@ -1303,11 +1309,18 @@ section {
   #s2 .dial:nth-child(3) {
     padding-top: var(--sp-3);
   }
-  #s2 .dial:nth-last-child(-n + 3) {
-    border-bottom: 1px solid var(--rule);
-  }
-  #s2 .dial:last-child {
+  #s2 .dial {
     border-bottom: 0;
+    border-top: 1px solid var(--rule);
+  }
+  #s2 .dial:first-child {
+    border-top: 0;
+  }
+  #s2 .dial:nth-child(-n + 3) {
+    border-top: 1px solid var(--rule);
+  }
+  #s2 .dial:first-child {
+    border-top: 0;
   }
   #s2 .s2head .drinkline {
     font-size: var(--fs-md);

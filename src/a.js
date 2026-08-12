@@ -225,6 +225,7 @@
       fuller: { touch: 1, taste: 0.2 },
       smoother: { taste: -0.5 },
       longer: { taste: -0.7, touch: -0.3, smell: -0.3 },
+      boozier: { taste: 0.6, touch: 0.4 },
     },
     _ = null, // #changes was folded into the sense rows
     ee = document.getElementById("s2"),
@@ -279,15 +280,15 @@
           Minimal: "It arrives quietly. Nothing in the first moment asks for your attention.",
         },
         "What Your Body Does": {
-          Dominant:
-            "Then it goes to work on your appetite: {effects} sharpen you for the table.",
+          Dominant: "Then it goes to work on your appetite: {effects} sharpen you for the table.",
           Strong: "It primes you for food, through {effects}.",
           Present:
             "There is some pull towards food, mainly {effects}, but it does not demand a meal.",
           Minimal: "It asks almost nothing of your digestion. This one stands on its own.",
         },
         "Where It Goes": {
-          Dominant: "It reads bright at the front and clears quickly, which is what an aperitivo is for.",
+          Dominant:
+            "It reads bright at the front and clears quickly, which is what an aperitivo is for.",
           Strong: "It builds and fades at an even pace.",
           Present: "It arrives at a steady pace.",
           Minimal:
@@ -318,7 +319,8 @@
         100: "a showpiece: it makes an entrance and then asks very little of you",
         "011": "a quiet worker: it does the job without announcing itself",
         "010": "an aperitif in function only: it makes you hungry without making a scene",
-        "001": "a signal more than a meal companion: it arrives, and that is more or less the whole of it",
+        "001":
+          "a signal more than a meal companion: it arrives, and that is more or less the whole of it",
         "000": "a companion, asking nothing of you and changing little",
       },
       bands: [
@@ -416,6 +418,7 @@
       fuller: { "Body and Texture": 1 },
       smoother: { "Bitterness Masking": 1, "Bitter Kick": -0.3 },
       longer: { "Watering Down": 1, "Cold Shock": 0.3 },
+      boozier: { "How Quickly It Lands": 1, "Watering Down": -0.3 },
     },
     le = {};
   oe.effects.forEach(function (e) {
@@ -580,8 +583,8 @@
               mu
                 ? "Unchanged from as served on this group. What you asked for moves other things."
                 : (md > 0 ? "Up " : "Down ") +
-                  Math.abs(md).toFixed(1) +
-                  " on as served, recomputed from the dials you moved.",
+                    Math.abs(md).toFixed(1) +
+                    " on as served, recomputed from the dials you moved.",
             ));
         } else {
           ((mc.className = "gcell mine"),
@@ -647,6 +650,7 @@
       fuller: "Producer",
       smoother: "Bar",
       longer: "Bar",
+      boozier: "Bar",
     },
     Le = {
       sweeter: "Sweeter",
@@ -659,6 +663,7 @@
       fuller: "Fuller bodied",
       smoother: "Smoother",
       longer: "Longer serve",
+      boozier: "Boozier",
     };
   function ke() {
     var e = {};
@@ -917,58 +922,52 @@
   // reverse" behaviour. There is no replacement: scrolling is now entirely the
   // user's, and #s1's animation is scrubbed off it by ScrollTrigger (b.js).
   function Ye() {}
-  (
-    addEventListener("keydown", function (e) {
-      if (!(e.metaKey || e.ctrlKey || e.altKey || e.shiftKey))
-        if (ve.hidden) {
-          var t = e.target,
-            n = t && t.tagName;
-          if (!(
-            "INPUT" === n ||
-            "TEXTAREA" === n ||
-            "SELECT" === n ||
-            (t && t.isContentEditable)
-          )) {
-            var o = "ArrowRight" === e.key || "ArrowDown" === e.key,
-              r = "ArrowLeft" === e.key || "ArrowUp" === e.key;
-            (o || r) &&
-              (function (e) {
-                if (Oe.length) {
-                  var t = pageYOffset,
-                    n = null;
-                  if (e > 0) {
-                    for (var o = 0; o < Oe.length; o++)
-                      if (Oe[o] > t + 12) {
-                        n = Oe[o];
-                        break;
-                      }
-                  } else
-                    for (var r = Oe.length - 1; r >= 0; r--)
-                      if (Oe[r] < t - 12) {
-                        n = Oe[r];
-                        break;
-                      }
-                  return (
-                    null !== n &&
-                    ((Ze = !0),
-                    clearTimeout(Re),
-                    scrollTo({ top: n, behavior: "smooth" }),
-                    setTimeout(function () {
-                      Ze = !1;
-                    }, 620),
-                    !0)
-                  );
-                }
-              })(o ? 1 : -1) &&
-              e.preventDefault();
-          }
-        } else {
-          var a = "ArrowDown" === e.key || "ArrowRight" === e.key,
-            i = "ArrowUp" === e.key || "ArrowLeft" === e.key;
-          (a || i) &&
-            (ye.scrollBy({ top: 90 * (a ? 1 : -1), behavior: "smooth" }), e.preventDefault());
+  addEventListener("keydown", function (e) {
+    if (!(e.metaKey || e.ctrlKey || e.altKey || e.shiftKey))
+      if (ve.hidden) {
+        var t = e.target,
+          n = t && t.tagName;
+        if (!("INPUT" === n || "TEXTAREA" === n || "SELECT" === n || (t && t.isContentEditable))) {
+          var o = "ArrowRight" === e.key || "ArrowDown" === e.key,
+            r = "ArrowLeft" === e.key || "ArrowUp" === e.key;
+          (o || r) &&
+            (function (e) {
+              if (Oe.length) {
+                var t = pageYOffset,
+                  n = null;
+                if (e > 0) {
+                  for (var o = 0; o < Oe.length; o++)
+                    if (Oe[o] > t + 12) {
+                      n = Oe[o];
+                      break;
+                    }
+                } else
+                  for (var r = Oe.length - 1; r >= 0; r--)
+                    if (Oe[r] < t - 12) {
+                      n = Oe[r];
+                      break;
+                    }
+                return (
+                  null !== n &&
+                  ((Ze = !0),
+                  clearTimeout(Re),
+                  scrollTo({ top: n, behavior: "smooth" }),
+                  setTimeout(function () {
+                    Ze = !1;
+                  }, 620),
+                  !0)
+                );
+              }
+            })(o ? 1 : -1) &&
+            e.preventDefault();
         }
-    }));
+      } else {
+        var a = "ArrowDown" === e.key || "ArrowRight" === e.key,
+          i = "ArrowUp" === e.key || "ArrowLeft" === e.key;
+        (a || i) &&
+          (ye.scrollBy({ top: 90 * (a ? 1 : -1), behavior: "smooth" }), e.preventDefault());
+      }
+  });
   var je = { s1: 640, s2: 300 };
   function Ge() {
     var e = window.HOSTVH || innerHeight;

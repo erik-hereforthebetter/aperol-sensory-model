@@ -168,6 +168,15 @@ const results = {};
 
     return {
       dialCount: document.querySelectorAll('#s2 .dial').length,
+      // Every dial must have a value readout, a chip row, and a live wire into
+      // the model — a dial that renders but moves nothing is the silent failure.
+      dialsFullyWired: (() => {
+        const dials = [...document.querySelectorAll('#s2 .dial')];
+        return dials.every((d) => {
+          const inp = d.querySelector('input[data-d]');
+          return inp && document.getElementById('v-' + inp.dataset.d) && d.querySelector('.dialaffects');
+        });
+      })(),
       senseRowsRespondToDial: before !== after,
       resetRestoresDefaults: reset === before,
       stepFigures: document.querySelectorAll('#s1 .stepfig').length,

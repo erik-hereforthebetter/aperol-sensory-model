@@ -195,6 +195,7 @@ of these must hold:
 | Baseline spread across the three glasses | ≤ 2px |
 | SVG `<mask>` elements in the document | 0 |
 | Duplicate element ids | none |
+| Dials rendered / all fully wired | 11 / yes |
 
 ---
 
@@ -220,16 +221,18 @@ said the same thing twice and made the column several screens tall.
 
 ### The dials
 
-Restored from the original POC, which offered eleven asks. Ten are present:
-Sweeter, More bitter, Colder, Fizzier, Bolder colour, More aromatic, Sharper,
-Fuller bodied, Smoother, Longer serve.
+All eleven asks from the original POC are present: Sweeter, More bitter,
+Colder, Fizzier, Bolder colour, More aromatic, Sharper, Fuller bodied,
+Smoother, Longer serve, Boozier.
 
-**"Boozier" is deliberately omitted.** In the POC it drives the effect the
-spec calls *Speed of Absorption* — the exact axis the brand audit flagged as a
-compliance blocker. A dial on an Aperol-branded property inviting a visitor to
-make the drink more alcoholic, by making the alcohol arrive faster, is the one
-ask that should not ship here. If it is ever wanted, rename it off that axis
-first.
+**"Boozier" carries a flag, not a fix.** It drives the effect the POC spec
+calls *Speed of Absorption* (renamed here to *How Quickly It Lands*), which the
+brand voice audit identifies as the sharpest compliance exposure on the page:
+an ask that invites a visitor to make the drink stronger, on an axis about how
+fast alcohol arrives. It is included so the client can judge it in context. Its
+tooltip is deliberately factual — it names the two levers and states the ABV as
+a specification — and carries no encouragement. If it survives review, consider
+renaming the dial off the absorption axis. See `docs/aperol-voice-audit.md`.
 
 There is no Basic/Advanced toggle. It was tried and removed: splitting the
 dials into two tiers hid the thing the section exists to show.
@@ -308,8 +311,6 @@ verbatim sources is in `aperol-voice-audit.md`.
 
 ## 11. Still open
 
-- **No age gate.** Every Aperol property carries one. Adding it changes the
-  entry experience, so it is a decision rather than a fix.
 - **`a.css` still contains rules superseded by `f.css`.** They are harmless
   (later cascade wins) but the file could be pruned.
 - **No Safari/WebKit in the test loop.** The mask bug was invisible in headless

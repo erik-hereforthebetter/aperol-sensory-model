@@ -289,6 +289,7 @@
     fuller: ["Touch", "Taste"],
     smoother: ["Taste"],
     longer: ["Taste", "Touch", "Smell"],
+    boozier: ["Taste", "Touch"],
   };
   // The Basic/Advanced toggle has been removed: every dial is shown, with its
   // detail, all the time.
