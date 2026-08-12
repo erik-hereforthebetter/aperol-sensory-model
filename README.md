@@ -82,3 +82,5 @@ these are regressions that already happened once and were invisible by eye.
 3. Drop the fixed `width`/`height`, keep the `viewBox`.
 4. Run `verify.mjs` — the glass size and baseline checks will tell you the nudge
    percentages you need.
+
+<!-- git-driven deploys verified 2026-08-12T17:44Z -->
